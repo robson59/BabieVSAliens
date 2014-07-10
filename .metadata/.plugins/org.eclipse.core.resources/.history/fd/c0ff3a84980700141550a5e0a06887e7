@@ -1,0 +1,61 @@
+package com.example.babiesvsaliens_v2;
+
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.ActionBar;
+import android.support.v4.app.Fragment;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Bundle;
+import android.view.GestureDetector;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.View.OnTouchListener;
+import android.view.ViewGroup;
+import android.os.Build;
+
+public class MainActivity extends ActionBarActivity implements OnTouchListener {
+	
+	Jogo jogo;
+	
+	
+	
+	float x , y;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		x = y = 0;
+		jogo = new Jogo(this, x, y);
+		jogo.setOnTouchListener(this);
+		
+		setContentView(jogo);
+		
+
+	}
+
+	@Override
+	protected void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+		jogo.pause();
+	}
+
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		jogo.resume();
+	}
+
+	@Override
+	public boolean onTouch(View v, MotionEvent event) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	
+
+}

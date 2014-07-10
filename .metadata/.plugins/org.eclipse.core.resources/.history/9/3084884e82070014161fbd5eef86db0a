@@ -1,0 +1,13 @@
+package com.example.babiesvsaliens_v2;
+
+import android.view.SurfaceHolder;
+
+public class JogoThread extends Thread {
+	
+	private SurfaceHolder holder;
+	private Logica l;
+	private Jogo v;
+	private boolean loop;
+
+
+}

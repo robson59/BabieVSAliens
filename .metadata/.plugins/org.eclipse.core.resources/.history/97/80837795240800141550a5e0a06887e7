@@ -1,0 +1,16 @@
+package com.example.babiesvsaliens_v2;
+
+public class botao {
+	
+	float x, y;
+	
+	public boolean isTouch(float posx, float posy) {
+		
+    	if( (posx >= x) && (posx <= x + width)
+    	&& (posy >= y) && (posy <= y + height))
+    		return true;
+    	else    		 	
+    	    return false;
+	}	
+
+}

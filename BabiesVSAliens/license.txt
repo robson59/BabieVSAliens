@@ -1,0 +1,27 @@
+		 	   GameUtil2D V1.1 - (c) 2014 - Desenvolvido por : Luciano Alves da Silva (lucianopascal@yahoo.com.br)
+						                           http://www.gameutil2d.org
+						                         
+						                     
+[TERMOS E CONDIÇÕES DE USO]
+
+  A biblioteca (framework) GameUtil2D foi desenvolvida para facilitar o desenvolvido de jogos , através do conjunto de classes 
+  oferecidas por ela. Ela atende as seguintes condições e termos de uso abaixo:
+  
+  	a) Essa biblioteca poderá ser distribuída livremente, para o desenvolvimento de jogos utilizando a ferramenta Android Developer
+  	   Tools (ADT).
+  	
+  	b) Essa biblioteca NÃO PODERÁ SER COMERCIALIZADA, em hipótese alguma, em nenhum site (Internet) ou através de qualquer outro meio. 
+  	
+  	c) O jogo desenvolvido com a plataforma GameUtil2D (referindo-se ao  jogo final gerado em um arquivo de extensão “.apk”, que é o
+  	   executável do Android) poderá ser distribuído de forma COMERCIAL (pago) ou NÃO-COMERCIAL (gratuito), conforme  a  escolha
+  	   do desenvolvedor do jogo.
+  	
+  	d) As classes GameElement, Image, AnimationSprites, Character, Scene, GameActivity,GameRunnable, Collision, Box, FlipEffect, 
+  	   GameState, TextDrawable, FontName e OrientationMode (presentes dentro do framework) PODERÃO SER MODIFICADAS, ÚNICA E 
+  	   EXCLUSIVAMENTE, PARA USO PESSOAL EM PROPÓSITO DO JOGO EM DESENVOLVIMENTO, CASO HAJA NECESSIDADE.
+  	   
+    e) As classes citadas no item (d) deste termo, NÃO PODERÃO SER MODIFICADAS PARA DISTRIBUIÇÃO AVULSA OU SEPARADA através da 
+       Internet ou qualquer outro meio, SEM A PERMISSÃO DO DESENVOLVEDOR.
+       
+    f) Como a GameUtil2D é distribuída de forma gratuita (sem nenhum custo),  desenvolvedor deste framework ESTÁ TOTALMENTE ISENTO DE
+       QUALQUER RESPONSABILIDADE  referente à falhas ou bugs apresentados durante a execução do jogo desenvolvido com esta biblioteca.		                     

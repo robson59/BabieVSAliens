@@ -1,0 +1,18 @@
+package com.example.babiesvsaliens_v2;
+
+import android.graphics.Bitmap;
+
+public class Botao {
+	
+	float x, y;
+	
+	public boolean isTouch(float posx, float posy, Bitmap botao) {
+		
+    	if( (posx >= x) && (posx <= x + botao.getWidth())
+    	&& (posy >= y) && (posy <= y + botao.getHeight()))
+    		return true;
+    	else    		 	
+    	    return false;
+	}	
+
+}

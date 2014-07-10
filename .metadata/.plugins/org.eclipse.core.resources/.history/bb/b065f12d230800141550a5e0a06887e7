@@ -1,0 +1,14 @@
+package com.example.babiesvsaliens_v2;
+
+public class Util {
+	
+public boolean IsTouch(int posx, int posy) {
+    	
+    	if( (posx >= x) && (posx <= x + width)
+    	&& (posy >= y) && (posy <= y + height))
+    		return true;
+    	else    		 	
+    	    return false;
+    }
+
+}

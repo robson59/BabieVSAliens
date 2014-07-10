@@ -1,0 +1,58 @@
+package com.example.babiesvsaliens_v2;
+
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
+
+public class Jogo extends SurfaceView implements Runnable {
+	
+	Thread t = null;
+	SurfaceHolder holder;
+	boolean play = false;
+	
+	Bitmap player;
+	
+	public Jogo(Context context) {
+		super(context);
+		
+		holder = getHolder();
+		player = BitmapFactory.decodeResource(getResources(), R.drawable.player);
+	}
+
+	@Override
+	public void run() {
+		while(play){
+			if(!holder.getSurface().isValid()){
+				continue;
+			}
+			
+			Canvas c = holder.lockCanvas();
+			c.drawARGB(255, 150, 255, 10);
+			holder.unlockCanvasAndPost(c);
+		}
+	}
+	
+	public void pause(){
+		play = false;
+		while (true) {
+			
+			try {
+				t.join();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			break;
+		}
+		t = null;
+	}
+	
+	public void resume(){
+		play = true;
+		t = new Thread(this);
+		t.start();
+	}
+
+}
