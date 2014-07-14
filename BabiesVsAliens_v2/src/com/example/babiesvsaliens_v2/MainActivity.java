@@ -3,12 +3,15 @@ package com.example.babiesvsaliens_v2;
 
 
 import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -35,7 +38,7 @@ public class MainActivity extends Activity implements OnTouchListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		x = y = 0;
+		x = 50; y = 0;
 		jogo = new Jogo(this);
 		jogo.setOnTouchListener(this);
 		
@@ -74,7 +77,7 @@ public class MainActivity extends Activity implements OnTouchListener {
 			super(context);
 			
 			holder = getHolder();
-			player = BitmapFactory.decodeResource(getResources(), R.drawable.player);
+			player = BitmapFactory.decodeResource(getResources(), R.drawable.player_um);
 			background = BitmapFactory.decodeResource(getResources(), R.drawable.back);
 			tiro = BitmapFactory.decodeResource(getResources(), R.drawable.mamadeira);
 			botao_atirar = BitmapFactory.decodeResource(getResources(), R.drawable.speed);
@@ -90,10 +93,18 @@ public class MainActivity extends Activity implements OnTouchListener {
 				}
 				
 				
-				if(sentido == Sentido.CIMA){
+				if(sentido == Sentido.BAIXO){
+					if(y>(altura - player.getHeight())){
+						y = y;
+					}else{
 						y += 15;
-				}else if(sentido == Sentido.BAIXO){
-						y -=15;
+					}
+				}else if(sentido == Sentido.CIMA){
+					if(y<(0)){
+						y = y;
+					}else{
+						y -= 15;
+					}
 				}else if (sentido == Sentido.PARADO){
 					move = 0;
 				}
@@ -102,13 +113,18 @@ public class MainActivity extends Activity implements OnTouchListener {
 				background_matrix.setTranslate(((largura/2)*-1), ((altura/2))*-1);
 				
 				Matrix player_matrix = new Matrix();
+				
+				
+
 				player_matrix.setTranslate(x, y);
+				
 				
 			    Canvas tela_jogo = holder.lockCanvas();
 			    largura = tela_jogo.getWidth();
 			    altura = tela_jogo.getHeight();
 			    
-			   
+			    //player_matrix.setRotate(100, x, y);
+			    
 			    botao.setX((largura - 80));
 			    botao.setY((altura - 25));
 			    
@@ -116,11 +132,11 @@ public class MainActivity extends Activity implements OnTouchListener {
 				tela_jogo.drawBitmap(player,player_matrix, null);
 				
 				if(!tiros.isEmpty()){
-					for (Tiro tiro_i : tiros) {
-						if(tiro_i.getX() > (largura)){
-							tiros.remove(tiro_i);
+					for (int i = 0; i < tiros.size(); i++){
+						tela_jogo.drawBitmap(tiro, tiros.get(i).atualizar_tiro(tiro), null);
+						if(tiros.get(i).getX() > (largura)){
+							tiros.remove(i);
 						}
-						tela_jogo.drawBitmap(tiro, tiro_i.atualizar_tiro(), null);
 					}
 				}	
 				tela_jogo.drawBitmap(botao_atirar, botao.botao_matrix(botao_atirar), null);
@@ -157,9 +173,9 @@ public class MainActivity extends Activity implements OnTouchListener {
 		switch (e.getAction()) {
 		case MotionEvent.ACTION_DOWN:
 			if(e.getX() < (largura/2)){
-				if(e.getY() > (altura/2) ){
+				if(e.getY() < (altura/2) ){
 					sentido = Sentido.CIMA;
-				}else if(e.getY() < (altura/2) ){
+				}else if(e.getY() > (altura/2) ){
 					sentido = Sentido.BAIXO;
 				}
 			}
@@ -169,9 +185,9 @@ public class MainActivity extends Activity implements OnTouchListener {
 			break;
 		case MotionEvent.ACTION_MOVE:
 			if(e.getX() < (largura/2)){
-				if(e.getY() > (altura/2) ){
+				if(e.getY() < (altura/2) ){
 					sentido = Sentido.CIMA;
-				}else if(e.getY() < (altura/2) ){
+				}else if(e.getY() > (altura/2) ){
 					sentido = Sentido.BAIXO;
 				}
 			}
@@ -181,9 +197,10 @@ public class MainActivity extends Activity implements OnTouchListener {
 			break;
 		}
 		
+		
+		
 		if(botao.isTouch(e.getX(), e.getY(), botao_atirar)){
 			if(e.getAction() == MotionEvent.ACTION_DOWN){
-				Toast.makeText(this, "press", Toast.LENGTH_SHORT).show();
 				Tiro tiro = new Tiro();
 				tiro.setX(x);
 				tiro.setY(y);

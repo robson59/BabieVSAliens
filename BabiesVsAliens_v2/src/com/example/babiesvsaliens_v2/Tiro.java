@@ -9,6 +9,8 @@ public class Tiro {
 	
 	Bitmap tiro;
 	
+	int rodar = 0;
+	float coeficiente_angular = 0F;
 	private float x, y;
 
 	public float getX() {
@@ -27,11 +29,14 @@ public class Tiro {
 		this.y = y;
 	}
 	
-	public Matrix atualizar_tiro(){
+	public Matrix atualizar_tiro(Bitmap tiro){
 		
 		Matrix tiro_matrix = new Matrix();
-		tiro_matrix.setTranslate( x +=15, y);
-
+		
+		tiro_matrix.setTranslate( x +=15, y-= y*2.04);
+		tiro_matrix.setRotate(rodar+=10, ((tiro.getWidth()/2)), ((tiro.getHeight()/2)));
+		
+	
 		return tiro_matrix;
 	}
 	
